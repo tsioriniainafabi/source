@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.5
 -- Dumped by pg_dump version 9.4.5
--- Started on 2017-03-02 14:28:49
+-- Started on 2017-03-02 14:34:20
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -532,6 +532,8 @@ SELECT pg_catalog.setval('sortie_id_sortie_seq', 1, false);
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO utilisateur (id_utilisateur, nom_utilisateur, mdp) VALUES (2, 'tsiory', 'etu43');
+INSERT INTO utilisateur (id_utilisateur, nom_utilisateur, mdp) VALUES (1, 'fabienne', 'etu43');
 
 
 --
@@ -776,7 +778,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-03-02 14:28:50
+-- Completed on 2017-03-02 14:34:20
 
 --
 -- PostgreSQL database dump complete
