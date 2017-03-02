@@ -4,7 +4,7 @@
 
 -- Dumped from database version 9.4.5
 -- Dumped by pg_dump version 9.4.5
--- Started on 2017-03-01 16:01:20
+-- Started on 2017-03-02 14:28:49
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,6 +12,45 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+
+DROP DATABASE atelier;
+--
+-- TOC entry 2086 (class 1262 OID 17383)
+-- Name: atelier; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE atelier WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'English_United Kingdom.1252' LC_CTYPE = 'English_United Kingdom.1252';
+
+
+ALTER DATABASE atelier OWNER TO postgres;
+
+\connect atelier
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 5 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO postgres;
+
+--
+-- TOC entry 2087 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
 
 --
 -- TOC entry 186 (class 3079 OID 11855)
@@ -371,13 +410,11 @@ ALTER TABLE ONLY utilisateur ALTER COLUMN id_utilisateur SET DEFAULT nextval('ut
 -- Data for Name: atelier; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY atelier (id_atelier, des_atelier, hmod, hm, fonction) FROM stdin;
-1	mag mp	50	0	stockage matiere premiere
-2	coupe	5	\N	\N
-3	detail couture	\N	\N	\N
-4	assemblage	\N	\N	\N
-5	mag psf	\N	\N	\N
-\.
+INSERT INTO atelier (id_atelier, des_atelier, hmod, hm, fonction) VALUES (1, 'mag mp', 50, 0, 'stockage matiere premiere');
+INSERT INTO atelier (id_atelier, des_atelier, hmod, hm, fonction) VALUES (2, 'coupe', 5, NULL, NULL);
+INSERT INTO atelier (id_atelier, des_atelier, hmod, hm, fonction) VALUES (3, 'detail couture', NULL, NULL, NULL);
+INSERT INTO atelier (id_atelier, des_atelier, hmod, hm, fonction) VALUES (4, 'assemblage', NULL, NULL, NULL);
+INSERT INTO atelier (id_atelier, des_atelier, hmod, hm, fonction) VALUES (5, 'mag psf', NULL, NULL, NULL);
 
 
 --
@@ -395,11 +432,9 @@ SELECT pg_catalog.setval('atelier_id_atelier_seq', 1, false);
 -- Data for Name: categ_matiere; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY categ_matiere (id_categ_mat, nom_categ) FROM stdin;
-1	matiere premiere
-2	produit semi fini
-3	produit fini
-\.
+INSERT INTO categ_matiere (id_categ_mat, nom_categ) VALUES (1, 'matiere premiere');
+INSERT INTO categ_matiere (id_categ_mat, nom_categ) VALUES (2, 'produit semi fini');
+INSERT INTO categ_matiere (id_categ_mat, nom_categ) VALUES (3, 'produit fini');
 
 
 --
@@ -417,8 +452,6 @@ SELECT pg_catalog.setval('categ_matiere_id_categ_mat_seq', 1, false);
 -- Data for Name: entree; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY entree (id_entree, id_mouvement, id_atelier, qte_entree) FROM stdin;
-\.
 
 
 --
@@ -436,20 +469,18 @@ SELECT pg_catalog.setval('entree_id_entree_seq', 1, false);
 -- Data for Name: matiere; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) FROM stdin;
-1	1	coton	metre	500	5000.00
-2	1	jeans	metre	700	4000.00
-4	1	soie	metre	200	3000.00
-5	1	mousseline	metre	200	2500.00
-6	1	tissus imprime	metre	800	5500.00
-3	1	dentelle	metre	200	5000.00
-7	1	velours	metre	900	3500.00
-8	1	doublure	metre	1000	2000.00
-9	1	fermeture	piece	1000	500.00
-10	1	fils	roure	2000	200.00
-11	1	patchwork	piece	1000	50.00
-12	1	boutons	piece	2000	50.00
-\.
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (1, 1, 'coton', 'metre', 500, 5000.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (2, 1, 'jeans', 'metre', 700, 4000.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (4, 1, 'soie', 'metre', 200, 3000.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (5, 1, 'mousseline', 'metre', 200, 2500.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (6, 1, 'tissus imprime', 'metre', 800, 5500.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (3, 1, 'dentelle', 'metre', 200, 5000.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (7, 1, 'velours', 'metre', 900, 3500.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (8, 1, 'doublure', 'metre', 1000, 2000.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (9, 1, 'fermeture', 'piece', 1000, 500.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (10, 1, 'fils', 'roure', 2000, 200.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (11, 1, 'patchwork', 'piece', 1000, 50.00);
+INSERT INTO matiere (id_matiere, id_categ_mat, des_mat, unite, seuil, prix_unitaire) VALUES (12, 1, 'boutons', 'piece', 2000, 50.00);
 
 
 --
@@ -467,8 +498,6 @@ SELECT pg_catalog.setval('matiere_id_matiere_seq', 1, false);
 -- Data for Name: mouvement; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY mouvement (id_mouvement, id_matiere, des_mvnt, date_mvnt) FROM stdin;
-\.
 
 
 --
@@ -486,8 +515,6 @@ SELECT pg_catalog.setval('mouvement_id_mouvement_seq', 1, false);
 -- Data for Name: sortie; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY sortie (id_sortie, id_atelier, id_mouvement, qte_sortie) FROM stdin;
-\.
 
 
 --
@@ -505,8 +532,6 @@ SELECT pg_catalog.setval('sortie_id_sortie_seq', 1, false);
 -- Data for Name: utilisateur; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY utilisateur (id_utilisateur, nom_utilisateur, mdp) FROM stdin;
-\.
 
 
 --
@@ -751,7 +776,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-03-01 16:01:20
+-- Completed on 2017-03-02 14:28:50
 
 --
 -- PostgreSQL database dump complete
